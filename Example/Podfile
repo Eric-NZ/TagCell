@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TagCell_Example' do
+  pod 'TagCell', :path => '../'
+
+  target 'TagCell_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
