@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'TagCell'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of TagCell.'
+  s.version          = '1.0.0'
+  s.summary          = 'A customizable cell enables client tableviews to create tags inside table view cell without limit. It derives from UITableViewCell.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,14 +21,14 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/eric.iosfan@gmail.com/TagCell'
+  s.homepage         = 'https://github.com/eric-nz/TagCell'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'eric.iosfan@gmail.com' => 'eric.iosfan@gmail.com' }
-  s.source           = { :git => 'https://github.com/eric.iosfan@gmail.com/TagCell.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/eric-nz/TagCell.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '12'
 
   s.source_files = 'TagCell/Classes/**/*'
   
