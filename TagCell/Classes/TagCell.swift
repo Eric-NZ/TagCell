@@ -34,8 +34,8 @@ public class TagCell: UITableViewCell {
         textingView = TextingView()
         self.contentView.addSubview(textingView)
         textingView.translatesAutoresizingMaskIntoConstraints = false
-        textingView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        textingView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        textingView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor).isActive = true
+        textingView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor).isActive = true
         textingView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
         textingView.topAnchor.constraint(equalTo: tagView.bottomAnchor).isActive = true
     }
@@ -52,11 +52,17 @@ public class TagCell: UITableViewCell {
 
 extension TagCell: UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
-    public func textFieldDidBeginEditing(_ textField: UITextField) {
-
-    }
-    
-    public func textFieldDidEndEditing(_ textField: UITextField) {
-
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if let text = textField.text {
+            if !text.isEmpty {
+                tagView.addTag(tagName: text)
+                textField.text = ""
+                
+                return true
+            }
+        } else {
+            return false
+        }
+        return false
     }
 }

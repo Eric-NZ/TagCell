@@ -14,12 +14,13 @@ public class TextingView: UIView {
         self.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         
         textField = TextField()
+        textField.clearButtonMode = .whileEditing
         self.addSubview(textField)
         
         // textField
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
-        textField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 16).isActive = true
+        textField.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 0).isActive = true
+        textField.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: 0).isActive = true
         textField.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor).isActive = true
         textField.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         // height constraint
