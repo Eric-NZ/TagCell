@@ -8,31 +8,18 @@
 import UIKit
 
 public class TagCell: UITableViewCell {
-    public var textField: TextField!
-    public var tagView: TagView!
+    
+    public var tagView = TagView()
+    public var textingView: TextingView!
+    public var tagDidAdded: (()->Void)?
+    public var tagDidRemoved: (()->Void)?
     
     public init(reuseIdentifier: String?) {
         super.init(style: .default, reuseIdentifier: reuseIdentifier)
         
-        // textField
-        textField = TextField()
-        self.contentView.addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        let topPin = NSLayoutConstraint(item: textField, attribute: .top, relatedBy: .equal, toItem: self.contentView.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
-        topPin.identifier = "textFieldTopPin"
-        let trailingPin = NSLayoutConstraint(item: textField, attribute: .trailing, relatedBy: .equal, toItem: self.contentView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: 24)
-        trailingPin.identifier = "textFieldTrailingPin"
-        let bottomPin = NSLayoutConstraint(item: textField, attribute: .bottom, relatedBy: .equal, toItem: self.contentView.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0)
-        bottomPin.identifier = "textFieldBottomPin"
-        let leadingPin = NSLayoutConstraint(item: textField, attribute: .leading, relatedBy: .equal, toItem: self.contentView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 24)
-        leadingPin.identifier = "textFieldLeadingPin"
-        // height constraint
-        textField.heightAnchor.constraint(equalToConstant: 96).isActive = true
-        // set text field delegate
-        textField.delegate = self
-        
-        // tagView
-        
+        addTagView()
+        addTextingView()
+        textingView.textField.delegate = self
     }
     
     convenience override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,15 +30,33 @@ public class TagCell: UITableViewCell {
         super.init(coder: aDecoder)
     }
     
-    private func switchHeight(editing: Bool) {
+    func addTextingView() {
+        textingView = TextingView()
+        self.contentView.addSubview(textingView)
+        textingView.translatesAutoresizingMaskIntoConstraints = false
+        textingView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        textingView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        textingView.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        textingView.topAnchor.constraint(equalTo: tagView.bottomAnchor).isActive = true
     }
+    
+    private func addTagView() {
+        self.contentView.addSubview(tagView)
+        tagView.translatesAutoresizingMaskIntoConstraints = false
+        tagView.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        tagView.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        tagView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor).isActive = true
+    }
+
 }
 
 extension TagCell: UITextFieldDelegate {
     // MARK: - UITextFieldDelegate
     public func textFieldDidBeginEditing(_ textField: UITextField) {
+
     }
     
     public func textFieldDidEndEditing(_ textField: UITextField) {
+
     }
 }

@@ -23,11 +23,9 @@ class ViewController: UIViewController {
         // auto layout
         autoLayout()
         // register cell reusable identifier
-        tableView.register(TagCell.self, forCellReuseIdentifier: "TagViewCell")
+        tableView.register(TagCell.self, forCellReuseIdentifier: "TagCell")
         // set data source
         tableView.dataSource = self
-        // auto row height
-        tableView.rowHeight = UITableView.automaticDimension
     }
     
     private func autoLayout() {
@@ -36,6 +34,10 @@ class ViewController: UIViewController {
         NSLayoutConstraint(item: tableView, attribute: .top, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: tableView, attribute: .right, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .right, multiplier: 1, constant: 0).isActive = true
         NSLayoutConstraint(item: tableView, attribute: .bottom, relatedBy: .equal, toItem: view.safeAreaLayoutGuide, attribute: .bottom, multiplier: 1, constant: 0).isActive = true
+        
+        // auto row height
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 180
     }
 
 }
@@ -47,11 +49,11 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TagViewCell") as? TagCell {
-            cell.textField.placeholder = mockPlaceHolder[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "TagCell") as? TagCell {
+            cell.textingView.textField.placeholder = mockPlaceHolder[indexPath.row]
             return cell
         } else {
-            return TagCell(reuseIdentifier: "TagViewCell")
+            return TagCell(reuseIdentifier: "TagCell")
         }
     }
 }
